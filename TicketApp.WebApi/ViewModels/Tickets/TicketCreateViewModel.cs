@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using System.ComponentModel.DataAnnotations;
+using TicketApp.WebApi.Commons.Attributes;
 using TicketApp.WebApi.Models;
 
 namespace TicketApp.WebApi.ViewModels.Tickets;
@@ -20,6 +21,11 @@ public class TicketCreateViewModel
     public int Price { get; set; }
     [Required]
     public string PhoneNumber { get; set; } = string.Empty;
+    [Required(ErrorMessage = "Image is required")]
+    [DataType(DataType.Upload)]
+    [MaxFileSize(3)]
+    [AllowedFileExtension(new string[] { ".jpg", ".png" })]
+    public IFormFile Image { get; set; } = null!;
 
     public static implicit operator Ticket(TicketCreateViewModel ticketCreateViewModel)
     {

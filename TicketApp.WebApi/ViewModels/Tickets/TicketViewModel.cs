@@ -10,7 +10,8 @@ namespace TicketApp.WebApi.ViewModels.Tickets
         public string StartDate { get; set; } = string.Empty;
         public string Location { get; set; } = string.Empty;
         public int Price { get; set; }
-        public string PhoneNumber { get; set; } = string.Empty; 
+        public string PhoneNumber { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
 
         public static implicit operator TicketViewModel(Ticket ticket)
         {
@@ -23,7 +24,8 @@ namespace TicketApp.WebApi.ViewModels.Tickets
                 StartDate = ticket.StartDate,
                 Location = ticket.Location,
                 Price = ticket.Price,
-                PhoneNumber = ticket.PhoneNumber
+                PhoneNumber = ticket.PhoneNumber,
+                ImageUrl = ticket.ImagePath
             };
         }
     }

@@ -6,13 +6,13 @@
         public static (string Hash, string Salt) Hash(string password)
         {
             string salt = GenerateSalt();
-            string hash = BCrypt.Net.BCrypt.HashPassword(salt + password + _key);
+            string hash = salt + password + _key;
             return (Hash: hash, Salt: salt);
         }
 
         public static bool Verify(string password, string salt, string hash)
         {
-            string oldhash = BCrypt.Net.BCrypt.HashPassword(salt + password + _key);
+            string oldhash = salt + password + _key;
             return oldhash == hash;
         }
 

@@ -26,7 +26,7 @@ namespace TicketApp.WebApi.ViewModels.Users
         public IFormFile Image { get; set; } = null!;
 
         [Required(ErrorMessage = "Password is required")]
-        [StrongPassword]
+        
         public string Password { get; set; } = string.Empty;
 
 
@@ -34,6 +34,7 @@ namespace TicketApp.WebApi.ViewModels.Users
         {
             return new User()
             {
+                
                 Name = userCreateViewModel.Name,
                 Email = userCreateViewModel.Email
             };
