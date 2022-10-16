@@ -45,6 +45,12 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IFileService, FileService>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 
+builder.Services.AddCors(corsOptions =>
+{
+    corsOptions.AddPolicy("AllowAll", corsAccesses =>
+    corsAccesses.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+});
+
 var app = builder.Build();
 
 #region Middlewares
@@ -56,6 +62,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 }
 app.UseMiddleware<ExceptionHandleMiddleware>();
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseStaticFiles();
