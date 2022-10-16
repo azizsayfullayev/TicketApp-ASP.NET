@@ -41,8 +41,7 @@ namespace TicketApp.WebApi.Services
 
             
             var user = (User)userCreateViewModel;
-            if (userCreateViewModel.Image is not null)
-                user.ImagePath = await _fileService.SaveImageAsync(userCreateViewModel.Image);
+            
             var hasherResult = PasswordHasher.Hash(userCreateViewModel.Password);
             user.PasswordHash = hasherResult.Hash;
             user.Salt = hasherResult.Salt;
@@ -58,8 +57,7 @@ namespace TicketApp.WebApi.Services
 
 
             var user = (User)userCreateViewModel;
-            if (userCreateViewModel.Image is not null)
-                user.ImagePath = await _fileService.SaveImageAsync(userCreateViewModel.Image);
+            
             var hasherResult = PasswordHasher.Hash(userCreateViewModel.Password);
             user.PasswordHash = hasherResult.Hash;
             user.Salt = hasherResult.Salt;

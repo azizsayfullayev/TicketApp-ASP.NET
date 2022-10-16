@@ -19,11 +19,7 @@ namespace TicketApp.WebApi.ViewModels.Users
         public string Email { get; set; } = string.Empty;
 
 
-        [Required(ErrorMessage = "Image is required")]
-        [DataType(DataType.Upload)]
-        [MaxFileSize(3)]
-        [AllowedFileExtensionAttribute(new string[] { ".jpg", ".png" })]
-        public IFormFile Image { get; set; } = null!;
+        
 
         [Required(ErrorMessage = "Password is required")]
         
