@@ -12,9 +12,11 @@ public class TicketCreateViewModel
     [Required(ErrorMessage ="Description is required")]
     public string Description { get; set; } = string.Empty;
     [Required]
-    public DateTime Created { get; set; }
+    public string EventDate { get; set; } = string.Empty;
     [Required]
-    public string StartDate { get; set; } = string.Empty;
+    public string StartTime { get; set; } = string.Empty;
+    [Required]
+    public string EndTime { get; set; } = string.Empty;
     [Required]
     public string Location { get; set; } = string.Empty;
     [Required]
@@ -24,7 +26,7 @@ public class TicketCreateViewModel
     [Required(ErrorMessage = "Image is required")]
     [DataType(DataType.Upload)]
     [MaxFileSize(3)]
-    [AllowedFileExtension(new string[] { ".jpg", ".png" })]
+    [AllowedFileExtension(new string[] { ".jpg", ".png" ,".jpeg"})]
     public IFormFile Image { get; set; } = null!;
 
     public static implicit operator Ticket(TicketCreateViewModel ticketCreateViewModel)
@@ -33,8 +35,9 @@ public class TicketCreateViewModel
         {
             Name = ticketCreateViewModel.Name,
             Description = ticketCreateViewModel.Description,
-            Created = ticketCreateViewModel.Created,
-            StartDate = ticketCreateViewModel.StartDate,
+            EventDate = ticketCreateViewModel.EventDate,
+            StartTime = ticketCreateViewModel.StartTime,
+            EndTime = ticketCreateViewModel.EndTime,
             Location = ticketCreateViewModel.Location,
             Price = ticketCreateViewModel.Price,
             PhoneNumber = ticketCreateViewModel.PhoneNumber

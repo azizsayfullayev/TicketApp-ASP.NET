@@ -24,7 +24,7 @@ builder.Services.ConfigureSwaggerAuthorize();
 //Caching 
 builder.Services.AddMemoryCache();
 
-var connectionString = builder.Configuration.GetConnectionString("PostgresDevelopmentDb");
+var connectionString = builder.Configuration.GetConnectionString("PostgresProductionDb");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -49,7 +49,7 @@ var app = builder.Build();
 
 #region Middlewares
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();

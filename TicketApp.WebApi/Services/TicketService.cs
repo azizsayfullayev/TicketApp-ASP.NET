@@ -25,6 +25,7 @@ namespace TicketApp.WebApi.Services
                 ticket.ImagePath = await _fileService.SaveImageAsync(ticketCreateViewModel.Image);
                 
             }
+
             await _repository.CreateAsync(ticket);
             return (statusCode: 200, message: "");
         }
