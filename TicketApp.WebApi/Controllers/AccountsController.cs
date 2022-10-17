@@ -25,6 +25,6 @@ namespace TicketApp.WebApi.Controllers
 
         [HttpPost("login"), AllowAnonymous]
         public async Task<IActionResult> LoginAsync([FromForm] UserLoginVeiwModel userLoginViewModel)
-            => Ok(new { Token = await _service.LoginAsync(userLoginViewModel) });
+            => Ok( await _service.LoginAsync(userLoginViewModel) );
     }
 }
