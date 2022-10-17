@@ -4,8 +4,8 @@ namespace TicketApp.WebApi.Interfaces.Services
 {
     public interface IAccountService
     {
-        public Task<bool> RegistrAsync(UserCreateViewModel userCreateViewModel);
+        public Task<UserViewModel> RegistrAsync(UserCreateViewModel userCreateViewModel);
         public Task<string> LoginAsync(UserLoginVeiwModel userLoginViewModel);
-        public Task<bool> RegistrAsAdminAsync(UserCreateViewModel userCreateViewModel); 
+        public Task<UserViewModel> RegistrAsAdminAsync(UserCreateViewModel userCreateViewModel); 
     }
 }

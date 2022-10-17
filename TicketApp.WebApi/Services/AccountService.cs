@@ -34,7 +34,7 @@ namespace TicketApp.WebApi.Services
 
         }
 
-        public async Task<bool> RegistrAsync(UserCreateViewModel userCreateViewModel)
+        public async Task<UserViewModel> RegistrAsync(UserCreateViewModel userCreateViewModel)
         {
             var validateUser = await _repository.FindByEmailAsync(userCreateViewModel.Email);
             if (validateUser is not null) throw new StatusCodeException(System.Net.HttpStatusCode.Conflict, "This email is already exist");
@@ -48,9 +48,11 @@ namespace TicketApp.WebApi.Services
             
             user.Role = Enums.UserRole.User;
             await _repository.CreateAsync(user);
-            return true;
+
+            var newUser = (UserViewModel)user;
+            return newUser;
         }
-        public async Task<bool> RegistrAsAdminAsync(UserCreateViewModel userCreateViewModel)
+        public async Task<UserViewModel> RegistrAsAdminAsync(UserCreateViewModel userCreateViewModel)
         {
             var validateUser = await _repository.FindByEmailAsync(userCreateViewModel.Email);
             if (validateUser is not null) throw new StatusCodeException(System.Net.HttpStatusCode.Conflict, "This email is already exist");
@@ -64,7 +66,11 @@ namespace TicketApp.WebApi.Services
 
             user.Role = Enums.UserRole.Admin;
             await _repository.CreateAsync(user);
-            return true;
+
+            var newUser = (UserViewModel)user;
+
+
+            return newUser;
         }
 
     }
