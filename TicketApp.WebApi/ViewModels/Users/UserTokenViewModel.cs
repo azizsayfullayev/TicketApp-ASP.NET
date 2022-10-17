@@ -8,6 +8,7 @@ namespace TicketApp.WebApi.ViewModels.Users
         public string Name { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public string Token { get; set; } = string.Empty;
+        public bool IsAdmin { get; set; }
 
         public static implicit operator UserTokenViewModel(User user)
         {
@@ -16,6 +17,7 @@ namespace TicketApp.WebApi.ViewModels.Users
                 Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
+                
             };
         }
     }

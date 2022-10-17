@@ -31,6 +31,15 @@ namespace TicketApp.WebApi.Services
 
             var getUser = (UserTokenViewModel)user;
             getUser.Token = _authManager.GenerateToken(user);
+
+            if (user.Role == Enums.UserRole.Admin)
+            {
+                getUser.IsAdmin = true;
+            }
+            else
+            {
+                getUser.IsAdmin = false;
+            }
             return getUser;
 
         }
