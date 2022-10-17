@@ -21,7 +21,7 @@ namespace TicketApp.WebApi.Services
             _fileService = fileService;
             _authManager = authManager;
         }
-        public async Task<string> LoginAsync(UserLoginVeiwModel userLoginViewModel)
+        public async Task<UserTokenViewModel> LoginAsync(UserLoginVeiwModel userLoginViewModel)
         {
             var user = await _repository.FindByEmailAsync(userLoginViewModel.Email);
             if (user is null) throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Email is wrong!");
@@ -29,8 +29,9 @@ namespace TicketApp.WebApi.Services
             var hasherResult = PasswordHasher.Verify(userLoginViewModel.Password, user.Salt, user.PasswordHash);
             if (hasherResult is false) throw new StatusCodeException(System.Net.HttpStatusCode.NotFound, "Password is wrong!");
 
-            
-            return _authManager.GenerateToken(user);
+            var getUser = (UserTokenViewModel)user;
+            getUser.Token = _authManager.GenerateToken(user);
+            return getUser;
 
         }
 
