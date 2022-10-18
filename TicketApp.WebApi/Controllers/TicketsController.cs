@@ -46,7 +46,7 @@ namespace TicketApp.WebApi.Controllers
             return StatusCode(result.statusCode, result.message);
         }
 
-        [HttpDelete("{id}"), Authorize("Admin")]
+        [HttpDelete("{id}"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(long id)
         {
             var result = await _ticketService.DeleteAsync(id);
