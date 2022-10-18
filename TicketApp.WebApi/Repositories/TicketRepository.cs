@@ -21,7 +21,7 @@ namespace TicketApp.WebApi.Repositories
 
         public async Task<bool> DeleteAsync(long id)
         {
-            var ticket = _appDbContext.Tickets.Where(x => x.Id == id);
+            var ticket = await _appDbContext.Tickets.FindAsync(id);
 
             if (ticket is not null)
             {
